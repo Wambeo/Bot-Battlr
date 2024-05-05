@@ -11,8 +11,8 @@ function BotsPage(){
   const [botSpecs, setBotSpecs] = useState({});
 
   useEffect(() => {
-    fetch("http://localhost:8002/bots")
-      .then((response) => response.json())
+    fetch("https://bot-battlr-f88d.onrender.com/bots")
+      .then((res) => res.json())
       .then((bots) => {
         setBotCollection(bots);
         setFilteredCollection(bots);        
@@ -48,10 +48,10 @@ function BotsPage(){
     setFilteredCollection(newFilteredCollection);
     setBotArmy(newArmy);
 
-    fetch(`http://localhost:8002/bots/${bot.id}`, {
+    fetch(`https://bot-battlr-f88d.onrender.com/bots/${bot.id}`, {
       method: "DELETE",
     })
-      .then((response) => response.json())
+      .then((res) => res.json())
       .then((data) => alert("bot deleted successfully!"));
   };
 
