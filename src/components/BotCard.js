@@ -9,32 +9,22 @@ const botTypeClasses = {
   Captain: "icon star",
 };
 
-function BotCard({ bot, setBotArmy, botArmy }) {
+function BotCard({ bot, action, removeCard }) {
 
-  function handleAddArmy(bot){
-    setBotArmy([...botArmy, bot]);
-    console.log(botArmy);
+  function handleAddArmy(e){
+   action(bot)
   }
-  function handleDelete(id)
 
-    {
-      fetch(`http://localhost:8002/bots/${id}`, {
-        method: "DELETE"
-      })
-      .then((data)=> data.json())
-      .then((res)=>{  
-        console.log(res)
-        
-        console.log(id)
-      })
-    }
-      
+  function handleRemoveArmy(e) {
+    removeCard(bot)
+  }
+ 
   return (
     <div className="ui column">
       <div
         className="ui card"
         key={bot.id}
-        onClick={() => handleAddArmy(bot)}
+        onClick={handleAddArmy}
       >
         <div className="image">
           <img alt="oh no!" src={bot.avatar_url} />
@@ -66,9 +56,7 @@ function BotCard({ bot, setBotArmy, botArmy }) {
             <div className="ui center aligned segment basic">
               <button
                 className="ui mini red button"
-                onClick={() =>
-                  handleDelete(bot.id)
-                }
+                onClick={ handleRemoveArmy}
               >
                 x
               </button>
